@@ -286,16 +286,18 @@ const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-8 py-6 text-lg relative overflow-hidden"
-              onClick={handleWhatsAppClick}
+              className="w-full sm:w-auto bg-[#0088cc] hover:bg-[#0077b5] text-white font-semibold px-8 py-6 text-lg relative overflow-hidden"
+              onClick={() => window.open("https://t.me/entreprenuer_zee07", "_blank")}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 animate={{ x: ["-200%", "200%"] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0.5 }}
               />
-              <MessageCircle className="w-5 h-5 mr-2 fill-white relative z-10" />
-              <span className="relative z-10">Chat on WhatsApp</span>
+              <svg className="w-5 h-5 mr-2 relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+              <span className="relative z-10">Chat on Telegram</span>
             </Button>
           </motion.div>
         </motion.div>
@@ -309,29 +311,6 @@ const HeroSection = () => {
           <TrustBadges />
         </motion.div>
       </div>
-
-      {/* Scroll indicator with enhanced animation */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs text-muted-foreground">Scroll to explore</span>
-          <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
-            <motion.div
-              className="w-1.5 h-1.5 rounded-full bg-primary"
-              animate={{ y: [0, 12, 0], opacity: [1, 0.5, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
-      </motion.div>
 
       {/* Corner decorations */}
       <motion.div
