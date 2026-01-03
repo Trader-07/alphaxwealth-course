@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import CourseOverview from "@/components/CourseOverview";
+import CountdownTimer from "@/components/CountdownTimer";
 import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import DisclaimerSection from "@/components/DisclaimerSection";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingSocials from "@/components/FloatingSocials";
 
 const Index = () => {
   return (
@@ -14,12 +15,13 @@ const Index = () => {
       <main>
         <HeroSection />
         <CourseOverview />
+        <CountdownTimer />
         <PricingSection />
         <FAQSection />
         <DisclaimerSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingSocials />
     </div>
   );
 };
