@@ -15,7 +15,7 @@ const FloatingSocials = () => {
   }, []);
 
   const handleTelegramClick = () => {
-    window.open("https://t.me/entreprenuer_zee07", "_blank");
+    window.open("https://t.me/Entrepreneur_zee07", "_blank");
   };
 
   return (
