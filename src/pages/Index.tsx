@@ -7,20 +7,46 @@ import FAQSection from "@/components/FAQSection";
 import DisclaimerSection from "@/components/DisclaimerSection";
 import Footer from "@/components/Footer";
 import FloatingSocials from "@/components/FloatingSocials";
+import AnimatedBackground from "@/components/AnimatedBackground";
+import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background scroll-smooth">
-      <Navbar />
-      <main>
-        <HeroSection />
-        <CourseOverview />
-        <CountdownTimer />
-        <PricingSection />
-        <FAQSection />
-        <DisclaimerSection />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-background scroll-smooth relative">
+      {/* Global animated background */}
+      <AnimatedBackground />
+      
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <HeroSection />
+          
+          <ScrollAnimationWrapper direction="up" delay={0.1}>
+            <CourseOverview />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper direction="scale" delay={0.1}>
+            <CountdownTimer />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper direction="up" delay={0.1}>
+            <PricingSection />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper direction="left" delay={0.1}>
+            <FAQSection />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper direction="up" delay={0.1}>
+            <DisclaimerSection />
+          </ScrollAnimationWrapper>
+        </main>
+        
+        <ScrollAnimationWrapper direction="up" delay={0.1}>
+          <Footer />
+        </ScrollAnimationWrapper>
+      </div>
+      
       <FloatingSocials />
     </div>
   );

@@ -1,108 +1,121 @@
 import { motion } from "framer-motion";
 
-const CandlestickChart = () => {
-  // Static candlestick data for premium visual
-  const candles = [
-    { height: 60, wickTop: 15, wickBottom: 20, isGreen: true, x: 0 },
-    { height: 45, wickTop: 10, wickBottom: 25, isGreen: false, x: 40 },
-    { height: 70, wickTop: 20, wickBottom: 15, isGreen: true, x: 80 },
-    { height: 35, wickTop: 30, wickBottom: 10, isGreen: false, x: 120 },
-    { height: 80, wickTop: 12, wickBottom: 18, isGreen: true, x: 160 },
-    { height: 50, wickTop: 25, wickBottom: 20, isGreen: true, x: 200 },
-    { height: 40, wickTop: 15, wickBottom: 30, isGreen: false, x: 240 },
-    { height: 65, wickTop: 18, wickBottom: 12, isGreen: true, x: 280 },
-    { height: 55, wickTop: 22, wickBottom: 16, isGreen: true, x: 320 },
-    { height: 48, wickTop: 14, wickBottom: 28, isGreen: false, x: 360 },
-  ];
+// Candlestick data with more variation
+const candles = [
+  { height: 35, wickTop: 8, wickBottom: 12, isGreen: true, x: 15 },
+  { height: 28, wickTop: 6, wickBottom: 15, isGreen: false, x: 35 },
+  { height: 42, wickTop: 10, wickBottom: 8, isGreen: true, x: 55 },
+  { height: 25, wickTop: 12, wickBottom: 10, isGreen: false, x: 75 },
+  { height: 38, wickTop: 5, wickBottom: 18, isGreen: true, x: 95 },
+  { height: 30, wickTop: 15, wickBottom: 6, isGreen: true, x: 115 },
+  { height: 45, wickTop: 8, wickBottom: 12, isGreen: false, x: 135 },
+  { height: 32, wickTop: 10, wickBottom: 14, isGreen: true, x: 155 },
+];
 
+const CandlestickChart = () => {
   return (
     <motion.svg
-      viewBox="0 0 400 200"
-      className="w-full h-auto max-w-md opacity-30"
-      aria-hidden="true"
+      width="180"
+      height="120"
+      viewBox="0 0 180 120"
+      className="opacity-60"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 0.3 }}
+      animate={{ opacity: 0.6 }}
       transition={{ duration: 1 }}
     >
-      {/* Background grid lines */}
-      {[40, 80, 120, 160].map((y) => (
+      {/* Animated grid lines */}
+      {[20, 40, 60, 80, 100].map((y, i) => (
         <motion.line
           key={y}
           x1="0"
           y1={y}
-          x2="400"
+          x2="180"
           y2={y}
-          stroke="hsl(var(--border))"
+          stroke="hsl(var(--primary) / 0.1)"
           strokeWidth="0.5"
-          strokeDasharray="4 4"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, delay: y / 200 }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1, delay: i * 0.1 }}
         />
       ))}
 
-      {/* Candlesticks with animation */}
-      {candles.map((candle, index) => {
-        const bodyY = 100 - candle.height / 2;
-        const color = candle.isGreen ? "hsl(var(--candle-green))" : "hsl(var(--candle-red))";
-
+      {/* Candlesticks with continuous animation */}
+      {candles.map((candle, i) => {
+        const bodyY = 60 - candle.height / 2;
         return (
           <motion.g
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.5, 
-              delay: index * 0.1,
-              type: "spring",
-              stiffness: 100 
+            key={i}
+            initial={{ opacity: 0, y: 20, scale: 0.5 }}
+            animate={{ 
+              opacity: 1, 
+              y: [0, -3, 0, 3, 0],
+              scale: 1,
+            }}
+            transition={{
+              opacity: { duration: 0.5, delay: i * 0.08 },
+              y: { 
+                duration: 2 + Math.random() * 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: i * 0.2
+              },
+              scale: { duration: 0.5, delay: i * 0.08 }
             }}
           >
             {/* Wick */}
             <motion.line
-              x1={candle.x + 12}
+              x1={candle.x}
               y1={bodyY - candle.wickTop}
-              x2={candle.x + 12}
+              x2={candle.x}
               y2={bodyY + candle.height + candle.wickBottom}
-              stroke={color}
-              strokeWidth="2"
+              stroke={candle.isGreen ? "hsl(var(--primary))" : "hsl(0, 70%, 50%)"}
+              strokeWidth="1.5"
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+              transition={{ duration: 0.4, delay: i * 0.08 + 0.2 }}
               style={{ transformOrigin: "center" }}
             />
+
             {/* Body */}
             <motion.rect
-              x={candle.x}
+              x={candle.x - 5}
               y={bodyY}
-              width="24"
+              width="10"
               height={candle.height}
-              fill={candle.isGreen ? color : "transparent"}
-              stroke={color}
-              strokeWidth="2"
-              rx="2"
+              fill={candle.isGreen ? "hsl(var(--primary))" : "hsl(0, 70%, 50%)"}
+              rx="1"
               initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              animate={{ 
+                scaleY: 1,
+                opacity: [0.7, 1, 0.7],
+              }}
+              transition={{ 
+                scaleY: { duration: 0.4, delay: i * 0.08 },
+                opacity: { duration: 2, repeat: Infinity, delay: i * 0.3 }
+              }}
               style={{ transformOrigin: "center" }}
             />
+
             {/* Glow effect for green candles */}
             {candle.isGreen && (
               <motion.rect
-                x={candle.x - 2}
-                y={bodyY - 2}
-                width="28"
-                height={candle.height + 4}
-                fill="none"
-                stroke={color}
-                strokeWidth="1"
-                rx="3"
-                opacity={0.3}
+                x={candle.x - 8}
+                y={bodyY - 3}
+                width="16"
+                height={candle.height + 6}
+                fill="hsl(var(--primary) / 0.3)"
+                rx="2"
                 animate={{
-                  opacity: [0.1, 0.3, 0.1],
-                  scale: [1, 1.05, 1],
+                  opacity: [0.2, 0.5, 0.2],
+                  scale: [1, 1.1, 1],
                 }}
-                transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeInOut",
+                }}
+                style={{ filter: "blur(3px)" }}
               />
             )}
           </motion.g>
@@ -111,15 +124,62 @@ const CandlestickChart = () => {
 
       {/* Animated trend line */}
       <motion.path
-        d="M 12 90 Q 52 110, 92 80 Q 132 120, 172 60 Q 212 75, 252 95 Q 292 65, 332 70 Q 372 100, 372 85"
+        d="M 10 80 Q 45 65, 75 55 T 140 40 T 175 25"
         fill="none"
         stroke="hsl(var(--primary))"
         strokeWidth="2"
-        strokeDasharray="5 5"
+        strokeDasharray="5,3"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 0.5 }}
-        transition={{ duration: 3, delay: 1.5, ease: "easeInOut" }}
+        animate={{ 
+          pathLength: 1, 
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{ 
+          pathLength: { duration: 2, ease: "easeInOut" },
+          opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+        }}
+        style={{ filter: "drop-shadow(0 0 4px hsl(var(--primary) / 0.5))" }}
       />
+
+      {/* Moving price indicator dot */}
+      <motion.circle
+        r="4"
+        fill="hsl(var(--primary))"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: [0, 1, 1, 0],
+          cx: [10, 75, 140, 175],
+          cy: [80, 55, 40, 25],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{ filter: "drop-shadow(0 0 6px hsl(var(--primary)))" }}
+      />
+
+      {/* Sparkle effects */}
+      {[0, 1, 2].map((i) => (
+        <motion.circle
+          key={`sparkle-${i}`}
+          r="2"
+          fill="hsl(var(--primary))"
+          cx={40 + i * 50}
+          cy={30 + i * 20}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1.5, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: i * 0.7,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
     </motion.svg>
   );
 };
