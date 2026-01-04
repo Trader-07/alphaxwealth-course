@@ -287,7 +287,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="w-full sm:w-auto bg-[#0088cc] hover:bg-[#0077b5] text-white font-semibold px-8 py-6 text-lg relative overflow-hidden"
-              onClick={() => window.open("https://t.me/entreprenuer_zee07", "_blank")}
+              onClick={() => window.open("https://t.me/Entrepreneur_zee07", "_blank")}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"

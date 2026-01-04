@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import FloatingSocials from "@/components/FloatingSocials";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
+import StockTicker from "@/components/StockTicker";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <AnimatedBackground />
       
       <div className="relative z-10">
+        <StockTicker />
         <Navbar />
         <main>
           <HeroSection />
