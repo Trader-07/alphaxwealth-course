@@ -27,13 +27,13 @@ const FloatingSocials = () => {
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="fixed bottom-28 right-8 z-50 bg-card border border-border rounded-xl p-4 shadow-2xl max-w-[200px]"
+            className="fixed bottom-28 left-8 z-50 bg-card border border-border rounded-xl p-4 shadow-2xl max-w-[200px]"
           >
             <motion.div animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity }}>
               <p className="text-sm text-foreground font-medium">👋 Need help?</p>
               <p className="text-xs text-muted-foreground mt-1">Chat with us on Telegram!</p>
             </motion.div>
-            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-card border-r border-b border-border rotate-45" />
+            <div className="absolute -bottom-2 left-8 w-4 h-4 bg-card border-r border-b border-border rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -43,7 +43,7 @@ const FloatingSocials = () => {
         onClick={handleTelegramClick}
         onMouseEnter={() => setTelegramHovered(true)}
         onMouseLeave={() => setTelegramHovered(false)}
-        className="fixed bottom-8 right-8 z-50 relative flex items-center justify-center w-14 h-14 bg-[#0088cc] rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-visible"
+        className="fixed bottom-8 left-8 z-50 relative flex items-center justify-center w-14 h-14 bg-[#0088cc] rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-visible"
         initial={{ scale: 0, opacity: 0, y: 100 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
@@ -54,9 +54,9 @@ const FloatingSocials = () => {
         <AnimatePresence>
           {telegramHovered && (
             <motion.div
-              initial={{ x: 60, opacity: 0 }}
-              animate={{ x: -90, opacity: 1 }}
-              exit={{ x: 60, opacity: 0 }}
+              initial={{ x: -60, opacity: 0 }}
+              animate={{ x: 90, opacity: 1 }}
+              exit={{ x: -60, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="absolute whitespace-nowrap bg-[#0088cc] text-white text-sm font-medium px-4 py-2 rounded-lg shadow-lg"
             >
