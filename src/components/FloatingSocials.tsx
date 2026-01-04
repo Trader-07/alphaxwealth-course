@@ -24,10 +24,10 @@ const FloatingSocials = () => {
       <AnimatePresence>
         {showTooltip && (
           <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.8 }}
-            className="fixed bottom-24 right-6 z-50 bg-card border border-border rounded-xl p-4 shadow-2xl max-w-[200px]"
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            className="fixed bottom-28 right-8 z-50 bg-card border border-border rounded-xl p-4 shadow-2xl max-w-[200px]"
           >
             <motion.div animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity }}>
               <p className="text-sm text-foreground font-medium">👋 Need help?</p>
@@ -38,16 +38,16 @@ const FloatingSocials = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Telegram button */}
+      {/* Floating Telegram button - bottom right corner */}
       <motion.button
         onClick={handleTelegramClick}
         onMouseEnter={() => setTelegramHovered(true)}
         onMouseLeave={() => setTelegramHovered(false)}
-        className="fixed bottom-6 right-6 z-50 relative flex items-center justify-center w-16 h-16 bg-[#0088cc] rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-visible"
-        initial={{ scale: 0, opacity: 0, x: 100 }}
-        animate={{ scale: 1, opacity: 1, x: 0 }}
+        className="fixed bottom-8 right-8 z-50 relative flex items-center justify-center w-14 h-14 bg-[#0088cc] rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-visible"
+        initial={{ scale: 0, opacity: 0, y: 100 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.1, y: -3 }}
         whileTap={{ scale: 0.95 }}
       >
         {/* Sliding label */}
