@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Sparkles } from "lucide-react";
 import TrustBadges from "./TrustBadges";
 import { motion } from "framer-motion";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const HeroSection = () => {
   // Text animation variants for staggered reveal
@@ -47,18 +48,32 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 py-16 pt-24 sm:py-20">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-primary/15 rounded-full blur-[100px] animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[300px] md:w-[500px] h-[200px] sm:h-[300px] md:h-[500px] bg-primary/10 rounded-full blur-[80px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[400px] sm:h-[600px] md:h-[800px] bg-gradient-radial from-primary/5 to-transparent rounded-full animate-float-slow" />
+      {/* Video background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
+
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 z-[1]">
+        <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-primary/10 rounded-full blur-[100px] animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[300px] md:w-[500px] h-[200px] sm:h-[300px] md:h-[500px] bg-primary/8 rounded-full blur-[80px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-background/60 via-background/70 to-background" />
       
       {/* Subtle vignette effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,hsl(var(--background))_100%)]" />
+      <div className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_center,transparent_30%,hsl(var(--background))_100%)]" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Brand badge - animated */}
