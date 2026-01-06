@@ -105,8 +105,8 @@ const AboutAuthor = () => {
             className="mt-8 p-6 bg-gradient-to-r from-primary/10 to-primary/5 border-l-4 border-primary rounded-r-xl"
           >
             <p className="text-lg md:text-xl font-medium text-foreground italic">
-              "We don't teach how to get rich quickly.<br />
-              <span className="text-primary">We teach how to think correctly in the market, ethically and responsibly.</span>"
+              "Trading is 80% psychology and 20% strategy.<br />
+              <span className="text-primary">Master your mind first, and the market will follow.</span>"
             </p>
             <footer className="mt-3 text-sm text-muted-foreground">
               — Mohammed Zeeshan Mohi Uddin
