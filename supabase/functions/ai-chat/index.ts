@@ -35,20 +35,142 @@ Key principles to follow:
 
 Remember the founder's philosophy: "We don't teach how to get rich quickly. We teach how to think correctly in the market, ethically and responsibly."`;
 
+// Simple in-memory rate limiting (per IP, resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 20; // Max requests per window
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute window
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
+// Input validation constants
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_LENGTH = 4000;
+const VALID_ROLES = ['user', 'assistant'];
+
+interface ChatMessage {
+  role: string;
+  content: string;
+}
+
+function validateMessages(messages: unknown): { valid: boolean; error?: string; messages?: ChatMessage[] } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: 'Messages must be an array' };
+  }
+  
+  if (messages.length === 0) {
+    return { valid: false, error: 'Messages array cannot be empty' };
+  }
+  
+  if (messages.length > MAX_MESSAGES) {
+    return { valid: false, error: `Too many messages (max ${MAX_MESSAGES})` };
+  }
+  
+  const validatedMessages: ChatMessage[] = [];
+  
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    
+    if (!msg || typeof msg !== 'object') {
+      return { valid: false, error: `Invalid message at index ${i}` };
+    }
+    
+    if (!msg.role || typeof msg.role !== 'string') {
+      return { valid: false, error: `Missing or invalid role at index ${i}` };
+    }
+    
+    if (!VALID_ROLES.includes(msg.role)) {
+      return { valid: false, error: `Invalid role "${msg.role}" at index ${i}. Must be "user" or "assistant"` };
+    }
+    
+    if (!msg.content || typeof msg.content !== 'string') {
+      return { valid: false, error: `Missing or invalid content at index ${i}` };
+    }
+    
+    if (msg.content.length > MAX_MESSAGE_LENGTH) {
+      return { valid: false, error: `Message at index ${i} exceeds max length (${MAX_MESSAGE_LENGTH} chars)` };
+    }
+    
+    // Sanitize: only keep role and content
+    validatedMessages.push({
+      role: msg.role,
+      content: msg.content.trim()
+    });
+  }
+  
+  return { valid: true, messages: validatedMessages };
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages } = await req.json();
+    // Rate limiting by IP
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     req.headers.get('cf-connecting-ip') || 
+                     'unknown';
+    
+    if (!checkRateLimit(clientIP)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(JSON.stringify({ error: 'Too many requests. Please wait a moment before trying again.' }), {
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Parse and validate request body
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return new Response(JSON.stringify({ error: 'Invalid JSON in request body' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (!body || typeof body !== 'object') {
+      return new Response(JSON.stringify({ error: 'Request body must be an object' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const { messages } = body as { messages?: unknown };
+    
+    // Validate messages
+    const validation = validateMessages(messages);
+    if (!validation.valid) {
+      console.warn(`Input validation failed: ${validation.error}`);
+      return new Response(JSON.stringify({ error: validation.error }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    console.log("Processing chat request with", messages?.length || 0, "messages");
+    console.log(`Processing chat request from ${clientIP} with ${validation.messages!.length} messages`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -60,7 +182,7 @@ serve(async (req) => {
         model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          ...messages,
+          ...validation.messages!,
         ],
         stream: true,
       }),
