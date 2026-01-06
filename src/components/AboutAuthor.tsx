@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Award, BookOpen, Shield } from "lucide-react";
+import { User, TrendingUp, Brain, Shield } from "lucide-react";
 
 const AboutAuthor = () => {
   return (
@@ -31,44 +31,48 @@ const AboutAuthor = () => {
         >
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
-              <Award className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+              <TrendingUp className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-foreground mb-1">Mission-Driven</h4>
-                <p className="text-sm text-muted-foreground">Making stock market knowledge ethical, practical, and Shariah-aligned</p>
+                <h4 className="font-semibold text-foreground mb-1">4+ Years Experience</h4>
+                <p className="text-sm text-muted-foreground">Learner and practitioner in the stock market</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
-              <BookOpen className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+              <Brain className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-foreground mb-1">Experienced Educator</h4>
-                <p className="text-sm text-muted-foreground">Hands-on experience in Indian stock market and financial education</p>
+                <h4 className="font-semibold text-foreground mb-1">AI & ML Enthusiast</h4>
+                <p className="text-sm text-muted-foreground">Leveraging technology for financial analysis</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
               <Shield className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-foreground mb-1">Values First</h4>
-                <p className="text-sm text-muted-foreground">Knowledge first, discipline always, values above everything</p>
+                <h4 className="font-semibold text-foreground mb-1">Shariah-Aware</h4>
+                <p className="text-sm text-muted-foreground">Ethical and Halal investing education</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              With hands-on experience in the Indian stock market and a strong background in financial education, 
-              Zeeshan focuses on teaching the <span className="text-foreground font-medium">"right way"</span> to 
-              understand markets—without hype, shortcuts, or speculative promises. His approach is simple: 
-              <span className="text-primary font-medium"> knowledge first, discipline always, and values above everything</span>.
+              Mohammed Zeeshan Mohi Uddin is the founder of Alpha X Wealth, an educational initiative focused on 
+              building <span className="text-foreground font-medium">financial literacy and market understanding</span> through 
+              an ethical and Shariah-aware approach.
             </p>
             <p>
-              Through Alpha X Wealth, he aims to empower students, beginners, and ethical investors with clear concepts 
-              in market basics, fundamental analysis, and technical analysis, while clearly distinguishing what is 
-              <span className="text-green-500 font-medium"> Halal</span> and what is 
-              <span className="text-red-500 font-medium"> Haram</span> in stock market practices.
+              He has <span className="text-primary font-medium">4+ years of experience</span> in the stock market as a 
+              learner and practitioner, along with continuous learning in <span className="text-foreground font-medium">Artificial 
+              Intelligence (AI) and Machine Learning (ML)</span> to better understand how technology can enhance financial 
+              analysis, data interpretation, and decision-support systems.
             </p>
             <p>
-              This course is created purely for educational and awareness purposes, helping learners build long-term 
-              financial understanding while staying aligned with their principles.
+              His work centers on teaching market basics, fundamental analysis, and technical analysis in a structured manner, 
+              while also creating awareness about <span className="text-green-500 font-medium">Halal</span> and 
+              <span className="text-red-500 font-medium"> Haram</span> practices in the stock market.
+            </p>
+            <p className="text-sm italic border-t border-border pt-4 mt-4">
+              All content under Alpha X Wealth is designed strictly for educational and knowledge purposes only, 
+              without providing investment advice or recommendations.
             </p>
           </div>
 
