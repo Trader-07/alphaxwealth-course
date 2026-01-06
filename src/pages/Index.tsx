@@ -11,6 +11,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import StockTicker from "@/components/StockTicker";
 import AboutAuthor from "@/components/AboutAuthor";
 import AIChatbot from "@/components/AIChatbot";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 const Index = () => {
   return (
@@ -26,8 +27,8 @@ const Index = () => {
           <CourseOverview />
           <CountdownTimer />
           <AboutAuthor />
+          <TestimonialsSection />
           <PricingSection />
-          <FAQSection />
           <DisclaimerSection />
         </main>
         <Footer />
