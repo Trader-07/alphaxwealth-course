@@ -4,19 +4,36 @@ import { motion, AnimatePresence } from "framer-motion";
 const FloatingSocials = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [telegramHovered, setTelegramHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsVisible(scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    
     const timer = setTimeout(() => setShowTooltip(true), 3000);
     const hideTimer = setTimeout(() => setShowTooltip(false), 8000);
     return () => {
       clearTimeout(timer);
       clearTimeout(hideTimer);
     };
-  }, []);
+  }, [isVisible]);
 
   const handleTelegramClick = () => {
     window.open("https://t.me/Entrepreneur_zee07", "_blank");
   };
+
+  if (!isVisible) return null;
 
   return (
     <>
