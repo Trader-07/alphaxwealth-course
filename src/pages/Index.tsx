@@ -10,6 +10,7 @@ import FloatingSocials from "@/components/FloatingSocials";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 import StockTicker from "@/components/StockTicker";
+import AboutAuthor from "@/components/AboutAuthor";
 
 const Index = () => {
   return (
@@ -29,6 +30,10 @@ const Index = () => {
           
           <ScrollAnimationWrapper direction="scale" delay={0.1}>
             <CountdownTimer />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper direction="up" delay={0.1}>
+            <AboutAuthor />
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper direction="up" delay={0.1}>
