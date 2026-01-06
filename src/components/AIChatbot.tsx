@@ -151,7 +151,7 @@ const AIChatbot = () => {
                   <Bot className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Alpha X Assistant</h3>
+                  <h3 className="font-semibold text-foreground">Alpha X Wealth Assistant</h3>
                   <p className="text-xs text-muted-foreground">Stock Market & Course Guide</p>
                 </div>
               </div>
