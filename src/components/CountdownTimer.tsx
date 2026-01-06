@@ -81,34 +81,68 @@ const CountdownTimer = () => {
   }, [timeLeft]);
 
   return (
-    <div className="relative py-8 px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6 }}
+      className="relative py-8 px-4"
+    >
       {/* Urgency header */}
-      <div className="flex items-center justify-center gap-2 mb-6">
-        <Flame className="w-5 h-5 text-red-500" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="flex items-center justify-center gap-2 mb-6"
+      >
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
+        >
+          <Flame className="w-5 h-5 text-red-500" />
+        </motion.div>
         <span className="text-sm sm:text-base font-bold text-red-500">
           LIMITED SEATS OFFER ENDS IN
         </span>
-        <Flame className="w-5 h-5 text-red-500" />
-      </div>
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
+        >
+          <Flame className="w-5 h-5 text-red-500" />
+        </motion.div>
+      </motion.div>
 
       {/* Timer blocks */}
-      <div className="flex items-center justify-center gap-3 sm:gap-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex items-center justify-center gap-3 sm:gap-4"
+      >
         <TimeBlock value={timeLeft.hours} label="HOURS" shouldAnimate={hoursChanged} />
         <span className="text-3xl font-bold text-primary mt-[-20px]">:</span>
         <TimeBlock value={timeLeft.minutes} label="MINUTES" shouldAnimate={minutesChanged} />
         <span className="text-3xl font-bold text-primary mt-[-20px]">:</span>
         <TimeBlock value={timeLeft.seconds} label="SECONDS" shouldAnimate={secondsChanged || prevTimeRef.current.seconds === -1} />
-      </div>
+      </motion.div>
 
       {/* Urgency message */}
-      <div className="flex items-center justify-center gap-2 mt-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 max-w-md mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="flex items-center justify-center gap-2 mt-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 max-w-md mx-auto"
+      >
         <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
         <span className="text-xs sm:text-sm text-red-400 font-medium">
           Only 12 seats remaining at this price!
         </span>
         <Clock className="w-4 h-4 text-red-500 flex-shrink-0" />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { Star, Quote } from "lucide-react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -43,6 +44,43 @@ const testimonials = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 const TestimonialsSection = () => {
   return (
     <section id="testimonials" className="py-12 sm:py-16 md:py-24 bg-background relative overflow-hidden">
@@ -51,25 +89,56 @@ const TestimonialsSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16 animate-fade-up">
-          <span className="text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={headerVariants}
+          className="text-center mb-8 sm:mb-12 md:mb-16"
+        >
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase"
+          >
             Real Feedback
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-2 mb-3 sm:mb-4">
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-2 mb-3 sm:mb-4"
+          >
             What Our Students Say
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-2">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-2"
+          >
             Join alot of students who have transformed their trading journey
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="animate-fade-up bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group"
-              style={{ animationDelay: `${index * 100}ms` }}
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group"
             >
               {/* Quote Icon */}
               <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/20 mb-3 sm:mb-4 group-hover:text-primary/40 transition-colors" />
@@ -120,25 +189,34 @@ const TestimonialsSection = () => {
                   {testimonial.date}
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Stats */}
-        <div className="mt-8 sm:mt-12 md:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-16 animate-fade-up" style={{ animationDelay: "600ms" }}>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">100+</div>
-            <div className="text-xs sm:text-sm text-muted-foreground">Happy Students</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">4.8</div>
-            <div className="text-xs sm:text-sm text-muted-foreground">Average Rating</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">95%</div>
-            <div className="text-xs sm:text-sm text-muted-foreground">Recommend Us</div>
-          </div>
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="mt-8 sm:mt-12 md:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-16"
+        >
+          {[
+            { value: "100+", label: "Happy Students" },
+            { value: "4.8", label: "Average Rating" },
+            { value: "95%", label: "Recommend Us" },
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.1 }}
+              className="text-center"
+            >
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">{stat.value}</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
