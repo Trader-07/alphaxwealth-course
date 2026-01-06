@@ -12,10 +12,10 @@ const testimonials = [
     verified: true,
   },
   {
-    name: "Priya Menon",
-    role: "CA Student",
+    name: "Rohit Reddy",
+    role: "Businessman",
     location: "Bangalore",
-    avatar: "PM",
+    avatar: "RR",
     rating: 5,
     date: "1 month ago",
     text: "I was skeptical at first, but the way concepts are explained is very beginner-friendly. Started with zero knowledge, now I can read charts confidently. Worth every rupee.",
