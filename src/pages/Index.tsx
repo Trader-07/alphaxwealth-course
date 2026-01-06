@@ -6,7 +6,7 @@ import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import DisclaimerSection from "@/components/DisclaimerSection";
 import Footer from "@/components/Footer";
-import FloatingSocials from "@/components/FloatingSocials";
+
 import AnimatedBackground from "@/components/AnimatedBackground";
 import StockTicker from "@/components/StockTicker";
 import AboutAuthor from "@/components/AboutAuthor";
@@ -34,7 +34,7 @@ const Index = () => {
         <Footer />
       </div>
       
-      <FloatingSocials />
+      
       <AIChatbot />
     </div>
   );
