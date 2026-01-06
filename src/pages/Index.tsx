@@ -11,6 +11,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
 import StockTicker from "@/components/StockTicker";
 import AboutAuthor from "@/components/AboutAuthor";
+import AIChatbot from "@/components/AIChatbot";
 
 const Index = () => {
   return (
@@ -55,6 +56,7 @@ const Index = () => {
       </div>
       
       <FloatingSocials />
+      <AIChatbot />
     </div>
   );
 };
