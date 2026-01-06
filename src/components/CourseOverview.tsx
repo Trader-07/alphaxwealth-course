@@ -106,17 +106,17 @@ const CourseOverview = () => {
   };
 
   return (
-    <section className="py-20 px-4 overflow-hidden" id="courses">
+    <section className="py-12 sm:py-16 md:py-20 px-4 overflow-hidden" id="courses">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 
-            className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4 opacity-0 animate-blur-in"
+            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 opacity-0 animate-blur-in"
           >
             Complete <span className="text-gradient-gold">Course Curriculum</span>
           </h2>
           <p 
-            className="text-muted-foreground text-lg max-w-2xl mx-auto opacity-0 animate-fade-up"
+            className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto opacity-0 animate-fade-up px-2"
             style={{ animationDelay: "0.1s" }}
           >
             From basics to advanced strategies — everything you need to trade ethically
@@ -124,7 +124,7 @@ const CourseOverview = () => {
         </div>
 
         {/* Course cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {courses.map((course, index) => (
             <div 
               key={index}
@@ -132,48 +132,48 @@ const CourseOverview = () => {
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
               <Card
-                className={`bg-card border-border hover:border-primary/50 transition-all duration-300 cursor-pointer overflow-hidden ${
+                className={`bg-card border-border hover:border-primary/50 transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation ${
                   expandedCard === index ? "border-primary ring-1 ring-primary/30" : ""
                 }`}
                 onClick={() => toggleCard(index)}
               >
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
-                        <course.icon className="w-6 h-6 text-primary" />
+                <CardHeader className="p-4 sm:p-6">
+                  <div className="flex items-start justify-between gap-2 sm:gap-4">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="p-2 sm:p-3 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors flex-shrink-0">
+                        <course.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                       </div>
-                      <div>
-                        <CardTitle className="font-display text-xl mb-1 group-hover:text-primary transition-colors">
+                      <div className="min-w-0">
+                        <CardTitle className="font-display text-base sm:text-lg md:text-xl mb-1 group-hover:text-primary transition-colors leading-tight">
                           {course.title}
                         </CardTitle>
-                        <CardDescription>{course.description}</CardDescription>
+                        <CardDescription className="text-xs sm:text-sm">{course.description}</CardDescription>
                       </div>
                     </div>
                     <div 
-                      className={`p-2 transition-transform duration-300 ${expandedCard === index ? "rotate-180" : ""}`}
+                      className={`p-1.5 sm:p-2 transition-transform duration-300 flex-shrink-0 ${expandedCard === index ? "rotate-180" : ""}`}
                     >
-                      <ChevronDown className="w-5 h-5 text-primary" />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                     </div>
                   </div>
                 </CardHeader>
 
                 {expandedCard === index && (
-                  <CardContent className="pt-0 pb-6 animate-accordion-down">
-                    <div className="border-t border-border/50 pt-4 mt-2">
-                      <div className="flex items-center gap-2 mb-4">
-                        <BookOpen className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium text-primary">
+                  <CardContent className="pt-0 pb-4 sm:pb-6 px-4 sm:px-6 animate-accordion-down">
+                    <div className="border-t border-border/50 pt-3 sm:pt-4 mt-2">
+                      <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                        <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                        <span className="text-xs sm:text-sm font-medium text-primary">
                           {course.topics.length} Topics Covered
                         </span>
                       </div>
-                      <ul className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+                      <ul className="space-y-1.5 sm:space-y-2 max-h-[300px] sm:max-h-[400px] overflow-y-auto pr-1 sm:pr-2">
                         {course.topics.map((topic, topicIndex) => (
                           <li
                             key={topicIndex}
-                            className="flex items-start gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors py-1.5 px-2 rounded-md hover:bg-primary/5"
+                            className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors py-1 sm:py-1.5 px-1.5 sm:px-2 rounded-md hover:bg-primary/5"
                           >
-                            <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-xs font-medium text-primary">
+                            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-[10px] sm:text-xs font-medium text-primary">
                               {topicIndex + 1}
                             </span>
                             <span className="pt-0.5">{topic}</span>
