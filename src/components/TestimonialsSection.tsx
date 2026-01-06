@@ -65,72 +65,11 @@ const TestimonialsSection = () => {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {testimonials.slice(0, -1).map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="animate-fade-up bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group"
               style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Quote Icon */}
-              <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/20 mb-3 sm:mb-4 group-hover:text-primary/40 transition-colors" />
-              
-              {/* Rating */}
-              <div className="flex gap-0.5 sm:gap-1 mb-2 sm:mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${
-                      i < testimonial.rating
-                        ? "text-yellow-500 fill-yellow-500"
-                        : "text-muted-foreground/30"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Review Text */}
-              <p className="text-foreground/90 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
-                "{testimonial.text}"
-              </p>
-
-              {/* Author Info */}
-              <div className="flex items-center gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-border/50">
-                {/* Avatar */}
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs sm:text-sm flex-shrink-0">
-                  {testimonial.avatar}
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                    <span className="font-medium text-foreground text-xs sm:text-sm truncate">
-                      {testimonial.name}
-                    </span>
-                    {testimonial.verified && (
-                      <span className="text-[9px] sm:text-[10px] bg-green-500/10 text-green-500 px-1 sm:px-1.5 py-0.5 rounded-full font-medium flex-shrink-0">
-                        Verified
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
-                    {testimonial.role} • {testimonial.location}
-                  </p>
-                </div>
-                
-                <span className="text-[10px] sm:text-xs text-muted-foreground/70 flex-shrink-0 hidden sm:block">
-                  {testimonial.date}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {/* Last Testimonial - Centered */}
-        <div className="flex justify-center mt-4 sm:mt-6">
-          {testimonials.slice(-1).map((testimonial, index) => (
-            <div
-              key={index}
-              className="animate-fade-up bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group w-full sm:w-1/2 lg:w-1/4"
-              style={{ animationDelay: `${testimonials.length * 100}ms` }}
             >
               {/* Quote Icon */}
               <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/20 mb-3 sm:mb-4 group-hover:text-primary/40 transition-colors" />
