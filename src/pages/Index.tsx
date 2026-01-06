@@ -12,6 +12,7 @@ import StockTicker from "@/components/StockTicker";
 import AboutAuthor from "@/components/AboutAuthor";
 import AIChatbot from "@/components/AIChatbot";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -35,7 +36,7 @@ const Index = () => {
         <Footer />
       </div>
       
-      
+      <BackToTop />
       <AIChatbot />
     </div>
   );
