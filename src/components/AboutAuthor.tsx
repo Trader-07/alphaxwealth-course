@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, TrendingUp, Brain, Shield } from "lucide-react";
+import { User, TrendingUp, Brain, Shield, Linkedin } from "lucide-react";
 
 const AboutAuthor = () => {
   return (
@@ -75,6 +75,27 @@ const AboutAuthor = () => {
               without providing investment advice or recommendations.
             </p>
           </div>
+
+          {/* LinkedIn Profile Box */}
+          <motion.a
+            href="https://www.linkedin.com/in/mohammed-zeeshan-mohi-uddin"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02, y: -2 }}
+            className="mt-6 flex items-center gap-3 p-4 bg-[#0077B5]/10 border border-[#0077B5]/20 rounded-xl w-fit hover:bg-[#0077B5]/15 transition-colors cursor-pointer"
+          >
+            <div className="p-2 bg-[#0077B5] rounded-lg">
+              <Linkedin className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">Connect on LinkedIn</p>
+              <p className="text-xs text-muted-foreground">Mohammed Zeeshan Mohi Uddin</p>
+            </div>
+          </motion.a>
 
           <motion.blockquote
             initial={{ opacity: 0, scale: 0.95 }}
