@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const FloatingSocials = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [telegramHovered, setTelegramHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,9 +61,9 @@ const FloatingSocials = () => {
         onMouseEnter={() => setTelegramHovered(true)}
         onMouseLeave={() => setTelegramHovered(false)}
         className="fixed bottom-8 left-8 z-50 relative flex items-center justify-center w-14 h-14 bg-[#0088cc] rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-visible"
-        initial={{ scale: 0, opacity: 0, y: 100 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        transition={{ delay: 1, type: "spring", stiffness: 200 }}
+        initial={{ scale: 1, opacity: 1 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 200 }}
         whileHover={{ scale: 1.1, y: -3 }}
         whileTap={{ scale: 0.95 }}
       >
