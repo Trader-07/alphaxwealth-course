@@ -29,6 +29,7 @@ const Index = () => {
           <AboutAuthor />
           <TestimonialsSection />
           <PricingSection />
+          <FAQSection />
           <DisclaimerSection />
         </main>
         <Footer />
