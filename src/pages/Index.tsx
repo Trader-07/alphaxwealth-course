@@ -12,6 +12,7 @@ import StockTicker from "@/components/StockTicker";
 import AboutAuthor from "@/components/AboutAuthor";
 import AIChatbot from "@/components/AIChatbot";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 
 const Index = () => {
   return (
@@ -36,6 +37,7 @@ const Index = () => {
       
       <FloatingSocials />
       <AIChatbot />
+      <MobileStickyCTA />
     </div>
   );
 };
