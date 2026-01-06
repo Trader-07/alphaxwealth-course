@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { BookOpen, Shield, Ban, GraduationCap } from "lucide-react";
 
 const badges = [
@@ -8,58 +7,20 @@ const badges = [
   { icon: GraduationCap, label: "Beginner Friendly" },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const badgeVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring" as const,
-      stiffness: 150,
-      damping: 12,
-    },
-  },
-};
-
 const TrustBadges = () => {
   return (
-    <motion.div
-      className="flex flex-wrap justify-center gap-4 md:gap-6"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <div className="flex flex-wrap justify-center gap-4 md:gap-6">
       {badges.map((badge, index) => (
-        <motion.div
+        <div
           key={index}
-          variants={badgeVariants}
-          whileHover={{ 
-            scale: 1.05, 
-            boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)",
-          }}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary/50 border border-border hover:border-primary/50 transition-colors cursor-default"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary/50 border border-border hover:border-primary/50 transition-all duration-300 cursor-default hover:scale-105 opacity-0 animate-pop"
+          style={{ animationDelay: `${0.5 + index * 0.1}s` }}
         >
-          <motion.div
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <badge.icon className="w-4 h-4 text-primary" />
-          </motion.div>
+          <badge.icon className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-foreground">{badge.label}</span>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 

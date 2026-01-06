@@ -2,14 +2,14 @@ import { useState } from "react";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
 const stockData = [
-  { symbol: "BTC", name: "Bitcoin", price: "97,245.32", change: "+2.34%", volume: "32.5B", marketCap: "1.92T", positive: true },
-  { symbol: "ETH", name: "Ethereum", price: "3,456.78", change: "+1.89%", volume: "18.2B", marketCap: "415.6B", positive: true },
-  { symbol: "AAPL", name: "Apple Inc.", price: "198.45", change: "-0.45%", volume: "52.3M", marketCap: "3.05T", positive: false },
-  { symbol: "TSLA", name: "Tesla Inc.", price: "245.67", change: "+3.21%", volume: "98.7M", marketCap: "781.2B", positive: true },
-  { symbol: "GOOGL", name: "Alphabet", price: "178.23", change: "+0.67%", volume: "24.1M", marketCap: "2.21T", positive: true },
-  { symbol: "AMZN", name: "Amazon", price: "189.34", change: "-1.12%", volume: "45.6M", marketCap: "1.97T", positive: false },
-  { symbol: "MSFT", name: "Microsoft", price: "423.56", change: "+1.45%", volume: "21.8M", marketCap: "3.15T", positive: true },
-  { symbol: "NVDA", name: "NVIDIA", price: "145.89", change: "+4.56%", volume: "312.4M", marketCap: "3.58T", positive: true },
+  { symbol: "BTC", price: "97,245.32", change: "+2.34%", positive: true },
+  { symbol: "ETH", price: "3,456.78", change: "+1.89%", positive: true },
+  { symbol: "AAPL", price: "198.45", change: "-0.45%", positive: false },
+  { symbol: "TSLA", price: "245.67", change: "+3.21%", positive: true },
+  { symbol: "GOOGL", price: "178.23", change: "+0.67%", positive: true },
+  { symbol: "AMZN", price: "189.34", change: "-1.12%", positive: false },
+  { symbol: "MSFT", price: "423.56", change: "+1.45%", positive: true },
+  { symbol: "NVDA", price: "145.89", change: "+4.56%", positive: true },
 ];
 
 const StockTicker = () => {
@@ -25,7 +25,6 @@ const StockTicker = () => {
         className="flex gap-8 whitespace-nowrap ticker-scroll"
         style={{ animationPlayState: isPaused ? "paused" : "running" }}
       >
-        {/* Duplicate content for seamless loop */}
         {[...stockData, ...stockData].map((stock, index) => (
           <div
             key={`${stock.symbol}-${index}`}

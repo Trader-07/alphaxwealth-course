@@ -1,116 +1,56 @@
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Sparkles } from "lucide-react";
-import CandlestickChart from "./CandlestickChart";
 import TrustBadges from "./TrustBadges";
-
-// Text shimmer animation - simplified
-const ShimmerText = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  return (
-    <span
-      className={`relative inline-block text-primary ${className}`}
-      style={{
-        backgroundImage: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.7) 50%, hsl(var(--primary)) 100%)",
-        backgroundSize: "200% 100%",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-        animation: "shimmer 4s linear infinite",
-      }}
-    >
-      {children}
-    </span>
-  );
-};
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
-      {/* Static gradient orbs - no animation on mobile */}
+      {/* Static gradient background */}
       <div className="absolute top-1/4 left-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-primary/10 rounded-full blur-3xl opacity-30" />
       <div className="absolute bottom-1/4 right-1/4 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-primary/5 rounded-full blur-3xl opacity-20" />
-
-      {/* Background candlestick decoration - hidden on mobile */}
-      <div className="absolute inset-0 hidden md:flex items-center justify-center">
-        <motion.div
-          className="absolute top-20 left-10 rotate-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <CandlestickChart />
-        </motion.div>
-        <motion.div
-          className="absolute bottom-20 right-10 -rotate-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1, delay: 0.7 }}
-        >
-          <CandlestickChart />
-        </motion.div>
-        <motion.div
-          className="absolute top-1/3 right-1/4 rotate-6 hidden lg:block"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          <CandlestickChart />
-        </motion.div>
-      </div>
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Brand badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        {/* Brand badge - fade down animation */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8 opacity-0 animate-fade-down">
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-primary">Alpha X Wealth</span>
-        </motion.div>
+        </div>
 
-        {/* Main headline */}
-        <motion.h1
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        {/* Main headline - blur in animation */}
+        <h1 
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0 animate-blur-in"
+          style={{ animationDelay: "0.1s" }}
         >
           <span>Learn Stock Market </span>
           <br className="hidden sm:block" />
-          <ShimmerText className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+          <span className="text-gradient-gold text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
             the Halal Way
-          </ShimmerText>
-        </motion.h1>
+          </span>
+        </h1>
 
-        {/* Subheadline */}
-        <motion.p
-          className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+        {/* Subheadline - fade up animation */}
+        <p 
+          className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto opacity-0 animate-fade-up"
+          style={{ animationDelay: "0.2s" }}
         >
           <span>Beginner to Advanced</span>
           <span className="mx-2 text-primary">•</span>
           <span>Knowledge-Based</span>
           <span className="mx-2 text-primary">•</span>
           <span>Shariah-Aligned</span>
-        </motion.p>
+        </p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+        {/* CTA Buttons - pop animation */}
+        <div 
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 opacity-0 animate-pop"
+          style={{ animationDelay: "0.3s" }}
         >
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg"
+            className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg transition-transform hover:scale-105"
             onClick={() => document.getElementById("courses")?.scrollIntoView({ behavior: "smooth" })}
           >
             <BookOpen className="w-5 h-5 mr-2" />
@@ -118,7 +58,7 @@ const HeroSection = () => {
           </Button>
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-[#0088cc] hover:bg-[#0077b5] text-white font-semibold px-8 py-6 text-lg"
+            className="w-full sm:w-auto bg-[#0088cc] hover:bg-[#0077b5] text-white font-semibold px-8 py-6 text-lg transition-transform hover:scale-105"
             onClick={() => window.open("https://t.me/Entrepreneur_zee07", "_blank")}
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -126,24 +66,23 @@ const HeroSection = () => {
             </svg>
             Chat on Telegram
           </Button>
-        </motion.div>
+        </div>
 
-        {/* Trust badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+        {/* Trust badges - scale up animation */}
+        <div 
+          className="opacity-0 animate-scale-up"
+          style={{ animationDelay: "0.4s" }}
         >
           <TrustBadges />
-        </motion.div>
+        </div>
       </div>
 
       {/* Corner decorations - hidden on mobile */}
       <div className="hidden md:block">
-        <div className="absolute top-20 left-4 w-20 h-20 border-l-2 border-t-2 border-primary/20 rounded-tl-3xl" />
-        <div className="absolute top-20 right-4 w-20 h-20 border-r-2 border-t-2 border-primary/20 rounded-tr-3xl" />
-        <div className="absolute bottom-20 left-4 w-20 h-20 border-l-2 border-b-2 border-primary/20 rounded-bl-3xl" />
-        <div className="absolute bottom-20 right-4 w-20 h-20 border-r-2 border-b-2 border-primary/20 rounded-br-3xl" />
+        <div className="absolute top-20 left-4 w-20 h-20 border-l-2 border-t-2 border-primary/20 rounded-tl-3xl opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }} />
+        <div className="absolute top-20 right-4 w-20 h-20 border-r-2 border-t-2 border-primary/20 rounded-tr-3xl opacity-0 animate-fade-up" style={{ animationDelay: "0.6s" }} />
+        <div className="absolute bottom-20 left-4 w-20 h-20 border-l-2 border-b-2 border-primary/20 rounded-bl-3xl opacity-0 animate-fade-up" style={{ animationDelay: "0.7s" }} />
+        <div className="absolute bottom-20 right-4 w-20 h-20 border-r-2 border-b-2 border-primary/20 rounded-br-3xl opacity-0 animate-fade-up" style={{ animationDelay: "0.8s" }} />
       </div>
     </section>
   );
