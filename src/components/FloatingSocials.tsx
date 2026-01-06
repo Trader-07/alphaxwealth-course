@@ -49,7 +49,7 @@ const FloatingSocials = () => {
           duration: 2,
           repeat: Infinity
         }}>
-              <p className="text-sm text-foreground font-medium">👋 Need help?</p>
+              
               <p className="text-xs text-muted-foreground mt-1">Chat with us on Telegram!</p>
             </motion.div>
             <div className="absolute -bottom-2 left-8 w-4 h-4 bg-card border-r border-b border-border rotate-45" />
