@@ -2,9 +2,9 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Rahul Sharma",
+    name: "Mujahid Khan",
     role: "Software Engineer",
-    location: "Mumbai",
+    location: "Hyderabad",
     avatar: "RS",
     rating: 5,
     date: "2 weeks ago",
@@ -59,7 +59,7 @@ const TestimonialsSection = () => {
             What Our Students Say
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join hundreds of students who have transformed their trading journey
+            Join alot of students who have transformed their trading journey
           </p>
         </div>
 
