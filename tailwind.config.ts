@@ -127,6 +127,42 @@ export default {
           "0%": { opacity: "0", transform: "perspective(400px) rotateX(10deg)" },
           "100%": { opacity: "1", transform: "perspective(400px) rotateX(0)" },
         },
+        "text-reveal": {
+          "0%": { opacity: "0", transform: "translateY(100%)", filter: "blur(4px)" },
+          "100%": { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+        },
+        "text-slide-up": {
+          "0%": { opacity: "0", transform: "translateY(40px) skewY(2deg)" },
+          "100%": { opacity: "1", transform: "translateY(0) skewY(0)" },
+        },
+        "letter-fade": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.05)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-20px) rotate(2deg)" },
+        },
+        "zoom-subtle": {
+          "0%": { transform: "scale(1.1)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "line-reveal": {
+          "0%": { width: "0%", opacity: "0" },
+          "100%": { width: "100%", opacity: "1" },
+        },
+        "mask-reveal": {
+          "0%": { clipPath: "inset(0 100% 0 0)" },
+          "100%": { clipPath: "inset(0 0 0 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -141,6 +177,15 @@ export default {
         "pop": "pop 0.4s ease-out forwards",
         "rotate-in": "rotate-in 0.5s ease-out forwards",
         "flip-up": "flip-up 0.5s ease-out forwards",
+        "text-reveal": "text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "text-slide-up": "text-slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "letter-fade": "letter-fade 0.5s ease-out forwards",
+        "gradient-shift": "gradient-shift 8s ease infinite",
+        "pulse-glow": "pulse-glow 4s ease-in-out infinite",
+        "float-slow": "float-slow 6s ease-in-out infinite",
+        "zoom-subtle": "zoom-subtle 1.2s ease-out forwards",
+        "line-reveal": "line-reveal 0.8s ease-out forwards",
+        "mask-reveal": "mask-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },
