@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Zap, Crown, Users, Clock } from "lucide-react";
@@ -27,134 +26,62 @@ const PricingSection = () => {
 
   return (
     <section className="py-20 px-4 overflow-hidden relative" id="pricing">
-      {/* Background glow effects */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl opacity-30" />
 
       <div className="max-w-lg mx-auto relative z-10">
         {/* Section header */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+        <div className="text-center mb-12">
+          <div 
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6 opacity-0 animate-pop"
           >
             <Zap className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Limited Time Offer</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <h2 
+            className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4 opacity-0 animate-blur-in"
+            style={{ animationDelay: "0.1s" }}
           >
             Enroll <span className="text-gradient-gold">Now</span>
-          </motion.h2>
-        </motion.div>
+          </h2>
+        </div>
 
         {/* Urgency banner */}
-        <motion.div
-          className="flex items-center justify-center gap-3 mb-8 p-4 rounded-xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/30"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          animate={{
-            boxShadow: [
-              "0 0 20px rgba(212, 175, 55, 0.2)",
-              "0 0 40px rgba(212, 175, 55, 0.4)",
-              "0 0 20px rgba(212, 175, 55, 0.2)",
-            ],
-          }}
-          transition={{
-            boxShadow: { duration: 2, repeat: Infinity },
-          }}
+        <div 
+          className="flex items-center justify-center gap-3 mb-8 p-4 rounded-xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/30 opacity-0 animate-scale-up"
+          style={{ animationDelay: "0.2s" }}
         >
-          <motion.div
-            animate={{ rotate: [0, -10, 10, -10, 0] }}
-            transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-          >
-            <Users className="w-5 h-5 text-primary" />
-          </motion.div>
+          <Users className="w-5 h-5 text-primary" />
           <span className="text-foreground font-medium text-sm sm:text-base">
             🔥 Only <span className="text-primary font-bold">50 seats</span> at this price!
           </span>
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            <Clock className="w-5 h-5 text-primary" />
-          </motion.div>
-        </motion.div>
+          <Clock className="w-5 h-5 text-primary" />
+        </div>
 
         {/* Pricing card */}
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 100, damping: 15 }}
-          className="relative"
+        <div 
+          className="relative opacity-0 animate-slide-up-bounce"
+          style={{ animationDelay: "0.3s" }}
         >
           {/* Popular badge */}
-          <motion.div
-            className="absolute -top-4 left-1/2 -translate-x-1/2 z-20"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.div
-              className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm"
-              animate={{
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0 0 15px rgba(212, 175, 55, 0.5)",
-                  "0 0 30px rgba(212, 175, 55, 0.8)",
-                  "0 0 15px rgba(212, 175, 55, 0.5)",
-                ],
-              }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-lg">
               <Crown className="w-4 h-4" />
               Most Popular
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           <Card className="relative overflow-hidden border-primary ring-2 ring-primary/30 bg-gradient-to-b from-primary/5 to-transparent">
             {/* Discount ribbon */}
-            <motion.div
-              className="absolute -right-12 top-6 rotate-45 bg-gradient-to-r from-red-600 to-red-500 text-white px-12 py-1 text-sm font-bold shadow-lg"
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.8, type: "spring" }}
-            >
-              <motion.span
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-              >
-                42% OFF
-              </motion.span>
-            </motion.div>
+            <div className="absolute -right-12 top-6 rotate-45 bg-gradient-to-r from-red-600 to-red-500 text-white px-12 py-1 text-sm font-bold shadow-lg">
+              42% OFF
+            </div>
 
             <CardHeader className="text-center pb-4 pt-8">
-              <motion.div
-                className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center transition-transform hover:scale-110">
                 <Crown className="w-8 h-8 text-primary" />
-              </motion.div>
+              </div>
               <CardTitle className="font-display text-2xl">{plan.name}</CardTitle>
               <CardDescription>{plan.description}</CardDescription>
             </CardHeader>
@@ -162,99 +89,62 @@ const PricingSection = () => {
             <CardContent className="space-y-6">
               {/* Pricing */}
               <div className="text-center space-y-2">
-                <motion.div
-                  className="flex items-center justify-center gap-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                >
+                <div className="flex items-center justify-center gap-2">
                   <span className="text-muted-foreground line-through text-xl">
                     ₹{plan.originalPrice.toLocaleString()}
                   </span>
-                  <motion.span
-                    className="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-xs font-bold"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [-2, 2, -2],
-                    }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
-                  >
+                  <span className="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-xs font-bold">
                     SAVE ₹2,500
-                  </motion.span>
-                </motion.div>
-                <motion.div
-                  className="flex items-baseline justify-center gap-1"
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                >
+                  </span>
+                </div>
+                <div className="flex items-baseline justify-center gap-1">
                   <span className="text-5xl font-bold text-gradient-gold">
                     ₹{plan.discountedPrice.toLocaleString()}
                   </span>
                   <span className="text-muted-foreground">/lifetime</span>
-                </motion.div>
+                </div>
               </div>
 
               {/* Features */}
               <ul className="space-y-3">
                 {plan.features.map((feature, featureIndex) => (
-                  <motion.li
+                  <li
                     key={featureIndex}
-                    className="flex items-center gap-3 text-sm"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: featureIndex * 0.05 }}
+                    className="flex items-center gap-3 text-sm opacity-0 animate-fade-right"
+                    style={{ animationDelay: `${0.4 + featureIndex * 0.05}s` }}
                   >
-                    <motion.div
-                      className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0"
-                      whileHover={{ scale: 1.2 }}
-                    >
+                    <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-transform hover:scale-110">
                       <Check className="w-3 h-3 text-primary" />
-                    </motion.div>
+                    </div>
                     <span className="text-muted-foreground">{feature}</span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
               {/* CTA Button */}
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button
-                  onClick={handleGetStarted}
-                  className="w-full py-6 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground glow-gold"
-                >
-                  Get Started Now
-                </Button>
-              </motion.div>
-
-              <motion.p
-                className="text-center text-xs text-muted-foreground"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
+              <Button
+                onClick={handleGetStarted}
+                className="w-full py-6 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground glow-gold transition-transform hover:scale-[1.02]"
               >
+                Get Started Now
+              </Button>
+
+              <p className="text-center text-xs text-muted-foreground">
                 🔒 Secure payment • Instant access
-              </motion.p>
+              </p>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Bottom urgency */}
-        <motion.div
-          className="text-center mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
+        <div 
+          className="text-center mt-8 opacity-0 animate-fade-up"
+          style={{ animationDelay: "0.6s" }}
         >
-          <motion.p
-            className="text-muted-foreground text-sm"
-            animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <p className="text-muted-foreground text-sm">
             ⚡ Price increases after 50 enrollments • Don't miss out!
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     </section>
   );
