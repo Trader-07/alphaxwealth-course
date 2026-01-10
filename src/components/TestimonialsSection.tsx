@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Mujahid Khan",
+    name: "Arjun Sharma",
     role: "Software Engineer",
     location: "Hyderabad",
     avatar: "RS",
@@ -23,10 +23,10 @@ const testimonials = [
     verified: true,
   },
   {
-    name: "Safa Fatima",
+    name: "Priya Mehta",
     role: "Engineering Student",
     location: "Hyderabad",
-    avatar: "SF",
+    avatar: "PM",
     rating: 4,
     date: "3 weeks ago",
     text: "Good content overall. Some modules could be more detailed, but the risk management section alone was worth the investment. Helped me avoid some costly mistakes.",
